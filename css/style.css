@@ -356,10 +356,43 @@ body, p, h1, h2, h3, h4, h5, h6 {
   text-align: center;
 }
 
+/*============================================================================================ */
+/* Filters css
+/*============================================================================================ */
+
+.filter_btn {
+  display: block;
+  max-width: 150px;
+  line-height: 30px;
+  padding: 1px, 5px;
+  color: #fff;
+  font-family: "Raleway", sans-serif;
+  font-weight: bold;
+  box-shadow: none !important;
+  outline: none !important;
+  border: none;
+  border-radius: 0px;
+  background: #7d9fd3;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.filter_btn.is-active {
+  background: #666666;
+  border-color: #333333;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+}
+
 /* End Index Menu Area css
 ============================================================================================ */
-/*---------------------------------------------------- */
-/*----------------------------------------------------*/
 /* Research area css
 ============================================================================================ */
 
@@ -399,13 +432,6 @@ body, p, h1, h2, h3, h4, h5, h6 {
   text-align: center;
   padding: 0px 0px 0px 0px;
 }
-/*
-border: 1px solid #ff02cc;
-border: 1px solid #010101;
-border: 1px solid #39ce59;
-border: 1px solid #ce3939;
-border: 1px solid #ff02cc;
-*/
 
 .research_links_list li a {
   color: #333333;
@@ -425,8 +451,6 @@ border: 1px solid #ff02cc;
 
 /* End Research Menu Area css
 ============================================================================================ */
-/*---------------------------------------------------- */
-/*----------------------------------------------------*/
 /* Teaching area css
 ============================================================================================ */
 .teaching_area {
@@ -477,14 +501,12 @@ border: 1px solid #ff02cc;
 
 .supervising_area h3{
   padding-top: 5px;
-  width: 80%;
   margin: 10px auto;
   text-align: center;
   border-bottom: #333333 1px dotted;
 }
 
 .supervising-table {
-  width: 80%;
   margin: 5px auto;
   border-collapse: collapse;
   border-radius: 5px;
@@ -524,17 +546,21 @@ border: 1px solid #ff02cc;
   width: 20%;
   padding-left: 5px;
   text-align: left;
-  line-height: 1.2em;
+  font-size: 13px;
+  line-height: 1em;
 }
 .supervising-table td.topic {
   color: #333;
   text-align: justify;
+  font-size: 13px;
 }
 .supervising-table td.university {
   width: 15%;  
   font-style: italic;
   color: #333;
+  font-size: 13px;
   text-align: center;
+  line-height: 1em;
 }
 .supervising-table td.document {
   width: 10%;
@@ -559,7 +585,6 @@ border: 1px solid #ff02cc;
 
 /* End Supervising Menu Area css
 /*============================================================================================ */
-/*---------------------------------------------------- */
 /* Resume area css
 ============================================================================================ */
 
