@@ -1,0 +1,31 @@
+---
+import { getCollection } from "astro:content";
+import { getEntry, render } from "astro:content";
+
+import Education from "../components/resume/Education.astro";
+import Research from "../components/resume/Research.astro";
+import Industry from "../components/resume/Industry.astro";
+import MainLayout from "../layouts/MainLayout.astro";
+
+---
+<MainLayout title="Resume">
+
+<section class="container resume_area" id="resume">   
+    <div class="main_title"><h2>Resume</h2></div>
+
+    <div class="resume_section">                   
+        <Education />
+    </div>
+
+    <div class="resume_section">                   
+        <Research />
+    </div>
+
+    <div class="resume_section">                   
+        <Industry />
+    </div>
+
+</section>
+
+</MainLayout>
+

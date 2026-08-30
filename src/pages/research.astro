@@ -1,0 +1,105 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import { publications, getPublicationYears } from "../lib/publications";
+
+const years = getPublicationYears();
+
+const publicationTypeClasses = {
+  article: "journal",
+  inproceedings: "conference",
+  incollection: "book",
+  book: "book",
+  inbook: "book",
+  phdthesis: "other",
+  mastersthesis: "other",
+  techreport: "other",
+  misc: "other",
+  unknown: "other",
+};
+
+const publicationTypeIcons = {
+  article: "fa-newspaper",
+  inproceedings: "fa-chalkboard-user",
+  incollection: "fa-book",
+  book: "fa-book",
+  inbook: "fa-book",
+  phdthesis: "fa-graduation-cap",
+  mastersthesis: "fa-graduation-cap",
+  techreport: "fa-file-lines",
+  misc: "fa-file-lines",
+  unknown: "fa-file-lines",
+};
+---
+
+<MainLayout title="Research">
+  <section class="container research_area" id="research">
+    <div class="main_title">
+      <h2>Publications</h2>
+    </div>
+
+    {years.map((year) => (
+      <div>
+        <div class="col-md-12 research_section">
+          <h3>{year}</h3>
+        </div>
+
+        {publications
+          .filter((publication) => publication.year === year)
+          .map((publication) => {
+            const publicationClass = publicationTypeClasses[publication.type] ?? "other";
+            const typeIcon = publicationTypeIcons[publication.type] ?? "fa-file-lines";
+            const citationSource =
+              publication.journal ??
+              publication.booktitle ??
+              publication.publisher ??
+              publication.organization ??
+              "Preprint";
+
+            return (
+              <div class={`col-md-12 research_section ${publicationClass}`}>
+                <div class="col-md-1 research_item_type">
+                  <i class={`fa-solid ${typeIcon}`}></i>
+                </div>
+                <div class="col-md-10 research_item_info">
+                  {publication.authors
+                    .map((author) => author.fullName)
+                    .join(", ")}
+                  . <strong>{publication.title}</strong>. {citationSource}
+                  {publication.volume ? `, ${publication.volume}` : ""}
+                  {publication.number ? `(${publication.number})` : ""}
+                  {publication.pages ? `, ${publication.pages}` : ""}
+                  {publication.year ? ` (${publication.year})` : ""}
+                  {publication.doi ? ", DOI: " : ""}
+                  {publication.doi && (
+                    <a href={`https://doi.org/${publication.doi}`} target="_blank" rel="noreferrer">
+                      {publication.doi}
+                    </a>
+                  )}
+                </div>
+
+                <div class="col-md-1 research_item_links">
+                  <ul class="research_links_list">
+                    {publication.doi && (
+                      <li>
+                        <a href={`https://doi.org/${publication.doi}`} target="_blank" rel="noreferrer">
+                          <i class="fa-solid fa-link"></i>DOI
+                        </a>
+                      </li>
+                    )}
+                    {publication.url && (
+                      <li>
+                        <a href={publication.url} target="_blank" rel="noreferrer">
+                          <i class="fa-solid fa-link"></i>LINK
+                        </a>
+                      </li>
+                    )}
+                  </ul>
+                </div>
+              </div>
+            );
+          })}
+      </div>
+    ))}
+  </section>
+</MainLayout>
+

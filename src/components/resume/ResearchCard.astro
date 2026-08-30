@@ -1,0 +1,30 @@
+---
+const { research } = Astro.props;
+const department = research.data.organization?.faculty?.department;
+const department_full = `${department.type} of ${department.name}`;
+const location = [
+    research.data.location?.city,
+    research.data.location?.country,
+].filter(Boolean).join(", ");
+const duration = research.data.duration;
+const period = [
+    duration?.start?.year,
+    duration.end.year === 0 || duration.end.year == null ? "present" : duration.end.year,
+].filter(Boolean).join(" to ");
+---
+
+<tr>
+    <td> {period} </td>
+    <td>
+        <strong> {research.data.title}</strong> at the <a 
+        href={department.url} target="_blank"> 
+            {department_full} 
+        </a> from <a 
+        href={research.data.organization.url} target="_blank"> 
+            {research.data.organization.name} 
+        </a>
+    </td>
+    <td>    
+        {location}
+    </td>
+</tr>
