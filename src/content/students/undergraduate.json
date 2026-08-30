@@ -1,0 +1,121 @@
+[
+  {
+    "year": "2024",
+    "student": "Andrey Alonso Sanabria Gómez",
+    "topic": "Microservices-Oriented Backend for Knowledge Graph Construction from Natural Language Prose Using Natural Language Processing (NLP) Techniques",
+    "university": "University of Santander",
+    "document": ""
+  },
+  {
+    "year": "2024",
+    "student": "Juan Pablo Guerrero Camacho, Ángel Leonardo Cáceres Quintero",
+    "topic": "Implementation of Cross-Validation in Knowledge Graph Embedding Models Applied to Fake News Detection",
+    "university": "University of Santander",
+    "document": ""
+  },
+  {
+    "year": "2024",
+    "student": "Omar Felipe Rincon Fonseca",
+    "topic": "Evaluating the Explainability of Knowledge Graph Embeddings in Latent Distance Models Using Dimensionality Reduction for Link Prediction Tasks",
+    "university": "University of Santander",
+    "document": ""
+  },
+  {
+    "year": "2024",
+    "student": "Juan Sebastián Estupiñan Ramirez",
+    "topic": "Evaluating Bilinear Models for Link Prediction in Knowledge Graphs via Visualization and Dimensionality Reduction",
+    "university": "University of Santander",
+    "document": ""
+  },
+  {
+    "year": "2019",
+    "student": "Fetecua-Puentes, Ricardo",
+    "topic": "Parameterization of High-Availability Services in Big Data Ecosystems through Self-Managing and Self-Configuring Tools",
+    "university": "Catholic University of Colombia",
+    "document": "https://hdl.handle.net/10983/23764"
+  },
+  {
+    "year": "2019",
+    "student": "Rubio-Tapias, Joseph Alexander and Alba-Rodríguez, Carlos Andrés",
+    "topic": "Development of a Configurable Web Component for Clustering and Data Analysis",
+    "university": "Catholic University of Colombia",
+    "document": "https://hdl.handle.net/10983/23778"
+  },
+  {
+    "year": "2019",
+    "student": "Jaimes-Rodríguez, Hugo Julian",
+    "topic": "Entrepreneurial Project for the Development and Commercialization of an Electronic Invoicing System",
+    "university": "Catholic University of Colombia",
+    "document": "https://hdl.handle.net/10983/23669"
+  },
+  {
+    "year": "2018",
+    "student": "Leguizamón-Quinche, Darwin Arnulfo and Vengoechea-Guerrero, Alexander Arturo",
+    "topic": "Automated Deployment Solutions for Windows Operating Systems",
+    "university": "Catholic University of Colombia",
+    "document": "http://hdl.handle.net/10983/15596"
+  },
+  {
+    "year": "2018",
+    "student": "Rey-Suárez, Milton Daniel",
+    "topic": "Data Extraction and Storage Component from a Social Network for a Web-Based Tool",
+    "university": "Catholic University of Colombia",
+    "document": "https://hdl.handle.net/10983/15408"
+  },
+  {
+    "year": "2018",
+    "student": "Pineda-Patarroyo, César Yesid and Jiménez-Hernández, Edward",
+    "topic": "Development of a Parameterizable Web Component for Scientific Data Visualization",
+    "university": "Catholic University of Colombia",
+    "document": "https://hdl.handle.net/10983/15597"
+  },
+  {
+    "year": "2018",
+    "student": "Torres-Robles, Edwin Andrés and Rincón-Saavedra, William Alonso",
+    "topic": "Implementation of a Self-Management and Self-Configuration Tool for Service Deployment in Big Data Projects",
+    "university": "Catholic University of Colombia",
+    "document": "https://hdl.handle.net/10983/18238"
+  },
+  {
+    "year": "2017",
+    "student": "Barriga-Mariño, José Camilo",
+    "topic": "Development and Application of a Twitter Data Extraction and Storage Tool in a Social Context of Political Violence",
+    "university": "Catholic University of Colombia",
+    "document": "https://hdl.handle.net/10983/14597"
+  },
+  {
+    "year": "2017",
+    "student": "Lagos-Galindo, Julián Estic",
+    "topic": "Backend Development of an Application for Customer Onboarding in a Banking Institution",
+    "university": "Catholic University of Colombia",
+    "document": "https://hdl.handle.net/10983/14605"
+  },
+  {
+    "year": "2017",
+    "student": "Cárdenas-Flórez, Juan Camilo and Chacón-Pinzón, Christian Romario",
+    "topic": "Meta-Analysis of Web-Oriented Architectural Styles",
+    "university": "Catholic University of Colombia",
+    "document": "http://hdl.handle.net/10983/14936"
+  },
+  {
+    "year": "2016",
+    "student": "Guzmán-Estupiñán, Wilmer and Riaga-Rodríguez, Jhonnatan Enrique",
+    "topic": "Analysis of Open Data Policies for the Development of a Compendium of Best Practices in Colombian Public Institutions",
+    "university": "Catholic University of Colombia",
+    "document": "https://hdl.handle.net/10983/14156"
+  },
+  {
+    "year": "2014",
+    "student": "Juan José Acosta Franklin",
+    "topic": "Tool for Ensuring Compliance with Information Security Policies",
+    "university": "Xaverian University",
+    "document": ""
+  },
+  {
+    "year": "2011",
+    "student": "Oscar Giovanni Medina Alfaro",
+    "topic": "Long-Term Planner for Resource Management in OSG-Type Computational Grids",
+    "university": "Xaverian University",
+    "document": ""
+  }
+]

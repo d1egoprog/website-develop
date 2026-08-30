@@ -1,17 +1,158 @@
 ---
-import { getCollection } from "astro:content";
-import { getEntry, render } from "astro:content";
-
 import MainLayout from "../layouts/MainLayout.astro";
+import graduateStudents from "../content/students/graduate.json";
+import undergraduateStudents from "../content/students/undergraduate.json";
+const supervisingFilters = [
+  { label: "Xaverian", value: "xaverian" },
+  { label: "Catholic", value: "catholic" },
+  { label: "Others", value: "others" },
+];
+
+const getStudentFilterGroup = (university: string) => {
+  const normalized = university.toLowerCase();
+
+  if (normalized.includes("xaverian")) return "xaverian";
+  if (normalized.includes("catholic")) return "catholic";
+  return "others";
+};
 
 ---
+
 <MainLayout title="Supervising">
+  <div class="main_container">
+    <div class="content_inner_bg">
+      <section class="container supervising_area" id="projects">
+        <div class="main_title">
+          <h2>Supervised Students</h2>
+        </div>
+        
+        
+        <div class="filters" aria-label="Student filters">
+          {supervisingFilters.map((filter) => (
+            <button type="button" class="filter_btn"
+              data-filter={filter.value}>
+              {filter.label}
+            </button>
+          ))}
+        </div>
 
-<section class="container research_area" id="resume">   
-    <div class="main_title"><h2>Supervising</h2></div>
+        <div class="col-md-12">
+          <h3>Graduate Students</h3>
+          <table class="supervising-table">
+            <thead>
+              <tr>
+                <th>Year</th>
+                <th>Name</th>
+                <th>Topic / Project</th>
+                <th>University</th>
+                <th>Resource</th>
+              </tr>
+            </thead>
+            <tbody>
+              {graduateStudents.map((student) => {
+                const filterGroup = getStudentFilterGroup(student.university);
+                return (
+                  <tr class="supervising-row" data-filter-group={filterGroup}>
+                    <td class="year">{student.year}</td>
+                    <td class="student">{student.student}</td>
+                    <td class="topic">{student.topic}</td>
+                    <td class="university">{student.university}</td>
+                    <td class="document">
+                      {student.document ? (
+                        <a href={student.document} target="_blank" rel="noopener noreferrer">
+                          <i class="fa-solid fa-book"></i>
+                        </a>
+                      ) : (
+                        <i class="fa-solid fa-spinner"></i>
+                      )}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
 
-    
-</section>
+        <div class="col-md-12">
+          <h3>Undergraduate Students</h3>
+          <table class="supervising-table">
+            <thead>
+              <tr>
+                <th>Year</th>
+                <th>Name</th>
+                <th>Topic / Project</th>
+                <th>University</th>
+                <th>Resource</th>
+              </tr>
+            </thead>
+            <tbody>
+              {undergraduateStudents.map((student) => {
+                const filterGroup = getStudentFilterGroup(student.university);
+                return (
+                  <tr class="supervising-row" data-filter-group={filterGroup}>
+                    <td class="year">{student.year}</td>
+                    <td class="student">{student.student}</td>
+                    <td class="topic">{student.topic}</td>
+                    <td class="university">{student.university}</td>
+                    <td class="document">
+                      {student.document ? (
+                        <a href={student.document} target="_blank" rel="noopener noreferrer">
+                          <i class="fa-solid fa-book"></i>
+                        </a>
+                      ) : (
+                        <i class="fa-solid fa-spinner"></i>
+                      )}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </div>
 
+  <style is:global>
+    .supervising-row.is-hidden {
+      display: none;
+    }
+  </style>
+
+  <script is:inline>
+    const supervisingButtons = document.querySelectorAll('.filter_btn[data-filter]');
+    const supervisingRows = document.querySelectorAll('.supervising-row');
+    const supervisingFilterState = new Set();
+
+    const updateSupervisingFilters = () => {
+      supervisingRows.forEach((row) => {
+        const category = row.getAttribute('data-filter-group');
+            // Show everything when no filters are selected
+        const shouldShow =
+          supervisingFilterState.size === 0 ||
+          !category ||
+          supervisingFilterState.has(category);
+        row.classList.toggle('is-hidden', !shouldShow);
+      });
+    };
+
+    supervisingButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const filter = button.getAttribute('data-filter');
+        if (!filter) return;
+
+        if (supervisingFilterState.has(filter)) {
+          supervisingFilterState.delete(filter);
+          button.classList.remove('is-active');
+        } else {
+          button.classList.add('is-active');
+          supervisingFilterState.add(filter);
+        }
+
+        updateSupervisingFilters();
+      });
+    });
+
+    updateSupervisingFilters();
+  </script>
 </MainLayout>
-

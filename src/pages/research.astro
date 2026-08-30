@@ -53,9 +53,15 @@ function formatBibtex(publication: (typeof publications)[number]) {
     <div class="main_title">
       <h2>Publications</h2>
     </div>
+    
+    <div class="filters" aria-label="Publication filters">
+      <button type="button" class="filter_btn" data-filter="journal">Journal</button>
+      <button type="button" class="filter_btn" data-filter="conference">Conference</button>
+      <button type="button" class="filter_btn" data-filter="book">Book / Chapters</button>
+    </div>
 
     {years.map((year) => (
-      <div>
+      <div class="year-group" data-year={year}>
         <div class="col-md-12 research_section">
           <h3>{year}</h3>
         </div>
@@ -94,14 +100,14 @@ function formatBibtex(publication: (typeof publications)[number]) {
                       {publication.doi}
                     </a>
                   )}
-
+                   
                   <button
                     type="button"
                     class="publication-toggle"
                     data-target={`publication-${publication.id}`}
                     aria-expanded="false"
                   >
-                    Show details
+                   more ...
                   </button>
                 </div>
 
@@ -159,6 +165,10 @@ function formatBibtex(publication: (typeof publications)[number]) {
       margin-bottom: 1.25rem;
       border-radius: 12px;
       overflow: hidden;
+    }
+
+    .publication-card.is-hidden {
+      display: none;
     }
 
     .publication-toggle {
@@ -264,6 +274,46 @@ function formatBibtex(publication: (typeof publications)[number]) {
   </style>
 
   <script is:inline>
+    const filterButtons = document.querySelectorAll('.filter_btn');
+    const publicationCards = document.querySelectorAll('.publication-card');
+    const filterState = new Set();
+
+    const updatePublicationFilters = () => {
+      publicationCards.forEach((card) => {
+        
+        const category = card.classList.contains('journal')
+          ? 'journal'
+          : card.classList.contains('conference')
+            ? 'conference'
+            : card.classList.contains('book')
+              ? 'book'
+              : 'other';
+        
+        const shouldShow = 
+        filterState.size === 0 || filterState.has(category);
+        
+        card.classList.toggle('is-hidden', !shouldShow);
+        });
+    };
+
+    filterButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const filter = button.getAttribute('data-filter');
+     
+        if (!filter) return;
+        
+        if (filterState.has(filter)) {
+          filterState.delete(filter);
+          button.classList.remove('is-active');
+        } else {
+          filterState.add(filter);
+          button.classList.add('is-active');
+        }
+
+        updatePublicationFilters();
+      });
+    });
+
     const toggleButtons = document.querySelectorAll('.publication-toggle');
 
     toggleButtons.forEach((button) => {

@@ -1,0 +1,44 @@
+[
+  {
+    "year": "2025",
+    "student": "Paisley, Brandon",
+    "topic": "Advanced NLP techniques for Early modern English manuscripts",
+    "university": "Trinity College of Dublin",
+    "document": ""
+  },
+  {
+    "year": "2025",
+    "student": "Poveda, Hugo",
+    "topic": "Knowledge Graphs Construction and GraphRAG integration for Explainable Responses with LLMs in International Trade",
+    "university": "Xaverian University",
+    "document": ""
+  },
+  {
+    "year": "2024",
+    "student": "Abaunza Ubaque, Orlando",
+    "topic": "RAING: Retrieval Augmented generation Inside kNowledge Graph an Approach to unveil Fake News",
+    "university": "Xaverian University",
+    "document": "http://hdl.handle.net/10554/69401"
+  },
+  {
+    "year": "2022",
+    "student": "DiPaolo, Giuseppina",
+    "topic": "Prototype for Assessing OpenIE Knowledge Graph-Based Question-Answering",
+    "university": "University of Salerno",
+    "document": "https://doi.org/10.3390/info14030186"
+  },
+  {
+    "year": "2022",
+    "student": "Tortorella, Teresa",
+    "topic": "LOD-based Knowledge Extraction: Question Answering",
+    "university": "University of Salerno",
+    "document": ""
+  },
+  {
+    "year": "2018",
+    "student": "Rivera Sepúlveda, Vivian Natalia and Pulido Pulido, Carlos Eduardo",
+    "topic": "Data Observatory Prototype for monitoring the Quality of Education (SDG 4) in Colombia",
+    "university": "Xaverian University",
+    "document": "https://doi.org/10.11144/Javeriana.10554.39793"
+  }
+]
