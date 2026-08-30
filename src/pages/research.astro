@@ -29,6 +29,23 @@ const publicationTypeIcons = {
   misc: "fa-file-lines",
   unknown: "fa-file-lines",
 };
+
+function formatBibtex(publication: (typeof publications)[number]) {
+  const fields = Object.entries(publication.bibtex ?? {}).filter(
+    ([key]) => !["abstract", "note", "keywords"].includes(key)
+  );
+
+  const body = fields
+    .map(([key, value]) => {
+      const cleanValue = String(value ?? "")
+        .replace(/\s+/g, " ")
+        .trim();
+      return `  ${key} = {${cleanValue}}`;
+    })
+    .join(",\n");
+
+  return `@${publication.type}{${publication.id},\n${body}\n}`;
+}
 ---
 
 <MainLayout title="Research">
@@ -54,12 +71,14 @@ const publicationTypeIcons = {
               publication.publisher ??
               publication.organization ??
               "Preprint";
+            const bibtexEntry = formatBibtex(publication);
 
             return (
-              <div class={`col-md-12 research_section ${publicationClass}`}>
+              <article class={`col-md-12 research_section publication-card ${publicationClass}`}>
                 <div class="col-md-1 research_item_type">
                   <i class={`fa-solid ${typeIcon}`}></i>
                 </div>
+
                 <div class="col-md-10 research_item_info">
                   {publication.authors
                     .map((author) => author.fullName)
@@ -75,6 +94,15 @@ const publicationTypeIcons = {
                       {publication.doi}
                     </a>
                   )}
+
+                  <button
+                    type="button"
+                    class="publication-toggle"
+                    data-target={`publication-${publication.id}`}
+                    aria-expanded="false"
+                  >
+                    Show details
+                  </button>
                 </div>
 
                 <div class="col-md-1 research_item_links">
@@ -95,11 +123,182 @@ const publicationTypeIcons = {
                     )}
                   </ul>
                 </div>
-              </div>
+
+                <div class="col-md-12 publication-panel" id={`publication-${publication.id}`} hidden>
+                  <div class="publication-split">
+                    <div class="publication-column publication-column-bibtex">
+                      <button
+                        type="button"
+                        class="copy-button"
+                        title="Copy BibTeX"
+                        data-copy={bibtexEntry}
+                        aria-label={`Copy BibTeX entry for ${publication.title}`}
+                      >
+                        <i class="fa-regular fa-copy"></i>
+                      </button>
+                      <pre><code>{bibtexEntry}</code></pre>
+                    </div>
+
+                    <div class="publication-column publication-column-abstract">
+                      <span class="publication-label">Abstract</span>
+                      <div class="publication-abstract-text">
+                        {publication.abstract ? publication.abstract : "No abstract available for this publication."}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
             );
           })}
       </div>
     ))}
   </section>
+
+  <style is:global>
+    .publication-card {
+      margin-bottom: 1.25rem;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .publication-toggle {
+      display: inline-block;
+      margin-left: 12px;
+      background: transparent;
+      border: none;
+      color: #1b7ae0;
+      font-weight: 600;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .publication-toggle:hover {
+      text-decoration: underline;
+    }
+
+    .publication-panel {
+      margin-top: 1rem;
+      background: rgba(17, 24, 39, 0.02);
+      border: 1px solid rgba(17, 24, 39, 0.08);
+      border-radius: 8px;
+      padding: 0.7rem;
+    }
+
+    .publication-split {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 1rem;
+    }
+
+    .publication-column {
+      min-width: 0;
+    }
+
+    .publication-column-bibtex {
+      position: relative;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(17, 24, 39, 0.08);
+      border-radius: 8px;
+      padding: 0.65rem 0.65rem 0.5rem;
+      color: #1f2937;
+      overflow: auto;
+    }
+
+    .publication-column-bibtex pre {
+      margin: 0.9rem 0 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-size: 0.8rem;
+      line-height: 1.55;
+      color: #1f2937;
+    }
+
+    .publication-meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .copy-button {
+      position: absolute;
+      top: 0.6rem;
+      right: 0.6rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border: 1px solid rgba(15, 23, 42, 0.2);
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.7);
+      color: #111827;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+      z-index: 1;
+    }
+
+    .copy-button:hover {
+      opacity: 0.85;
+    }
+
+    .publication-column-abstract {
+      background: rgba(255, 255, 255, 0.65);
+      border: 1px solid rgba(17, 24, 39, 0.08);
+      border-radius: 10px;
+      padding: 0.75rem;
+    }
+
+    .publication-abstract-text {
+      margin-top: 0.5rem;
+      color: #1f2937;
+      line-height: 1.7;
+      font-size: 0.96rem;
+    }
+
+    @media (max-width: 768px) {
+      .publication-split {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+  <script is:inline>
+    const toggleButtons = document.querySelectorAll('.publication-toggle');
+
+    toggleButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const targetId = button.getAttribute('data-target');
+        const panel = document.getElementById(targetId);
+        const expanded = button.getAttribute('aria-expanded') === 'true';
+
+        button.setAttribute('aria-expanded', String(!expanded));
+        button.textContent = expanded ? 'Show details' : 'Hide details';
+
+        if (panel) {
+          panel.hidden = expanded;
+        }
+      });
+    });
+
+    document.querySelectorAll('.copy-button').forEach((button) => {
+      button.addEventListener('click', async () => {
+        const text = button.getAttribute('data-copy');
+
+        if (!text) return;
+
+        try {
+          await navigator.clipboard.writeText(text);
+          const original = button.innerHTML;
+          button.innerHTML = '<i class="fa-solid fa-check"></i>';
+          window.setTimeout(() => {
+            button.innerHTML = original;
+          }, 1200);
+        } catch (error) {
+          console.error('Failed to copy BibTeX entry:', error);
+        }
+      });
+    });
+  </script>
 </MainLayout>
 
