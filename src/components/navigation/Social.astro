@@ -1,0 +1,31 @@
+---
+const profiles = [
+    { name: "LinkedIn", url: "https://www.linkedin.com/in/d1egoprog/", icon: "fa-linkedin" },
+    { name: "GitHub", url: "https://github.com/d1egoprog", icon: "fa-github" },
+    { name: "Google Scholar", url: "https://scholar.google.com/citations?user=USbw71sAAAAJ&hl=en", icon: "fa-google-scholar" },
+    { name: "ResearchGate", url: "https://www.researchgate.net/profile/Diego-Rincon-Yanez", icon: "fa-researchgate" },
+    { name: "ORCID", url: "https://orcid.org/0000-0002-8982-1678", icon: "fa-orcid" },
+    { name: "X", url: "https://x.com/d1egoprog", icon: "fa-x-twitter" },
+];
+---
+<ul class="social_icon">
+    {profiles.map(({ name, url, icon }) => (
+        <li>
+            <a
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Diego Rincon-Yanez on ${name} (opens in a new tab)`}
+            >
+                <i class={`fa-brands ${icon}`} aria-hidden="true"></i>
+            </a>
+        </li>
+    ))}
+</ul>
+
+<style>
+    .social_icon a:focus-visible {
+        outline: 2px solid #333;
+        outline-offset: 3px;
+    }
+</style>

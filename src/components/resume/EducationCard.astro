@@ -1,0 +1,22 @@
+---
+const { education } = Astro.props;
+---
+
+<tr>
+    <td> {education.data.dates.completed.substring(0,4)} </td>
+    <td>
+        <strong> {education.data.degree.level} (
+        {education.data.degree.abbreviation})</strong> in <a href={education.data.degree.url} target="_blank">
+            {education.data.degree.name}
+        </a> at the <a href={education.data.department.url} target="_blank"> 
+            {education.data.department.name}
+        </a> from the <a href={education.data.institution.url} target="_blank">
+            {education.data.institution.name}
+        </a>
+    </td>
+    <td>    
+        {education.data.location.city}, {education.data.location.country}
+    </td>
+</tr>
+
+</article>

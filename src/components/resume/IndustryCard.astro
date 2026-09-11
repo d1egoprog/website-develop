@@ -1,0 +1,27 @@
+---
+const { industry } = Astro.props;
+const organization = industry.data.organization;
+const organization_full = `${organization.type} - ${organization.name}`;
+const location = [
+    industry.data.location?.city,
+    industry.data.location?.country,
+].filter(Boolean).join(", ");
+const duration = industry.data.duration;
+const period = [
+    duration?.start?.year,
+    duration.end.year === 0 || duration.end.year == null ? "present" : duration.end.year,
+].filter(Boolean).join(" to ");
+---
+
+<tr>
+    <td> {period} </td>
+    <td>
+        <strong> {industry.data.title}</strong> at the <a 
+        href={organization.url} target="_blank"> 
+            {organization_full} 
+        </a>
+    </td>
+    <td>    
+        {location}
+    </td>
+</tr>

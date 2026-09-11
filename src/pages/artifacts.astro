@@ -1,0 +1,272 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+
+import { artifacts } from "../data/artifacts";
+
+const filters = [
+    { label: "All", value: "all" },
+    { label: "Software", value: "software" },
+    { label: "Ontologies", value: "ontologies" },
+    { label: "Data", value: "data" },
+];
+---
+
+<MainLayout
+    title="Artifacts"
+    description="Selected research software, ontologies, datasets, and experimental resources from Diego Rincon-Yanez and RYFoR, spanning Knowledge Graphs, AI, and digital humanities."
+    pageType="CollectionPage"
+>
+    <section
+        class="portfolio_area container"
+        id="artifacts"
+        aria-labelledby="artifacts-title"
+    >
+        <div class="main_title">
+            <h1 id="artifacts-title">Research Artifacts</h1>
+        </div>
+        <p class="artifacts-intro">
+            Software, ontologies, datasets, experiments, and reusable resources
+            from my research and collaborations.
+        </p>
+        <div
+            class="porfolio_menu"
+            role="group"
+            aria-label="Filter artifacts by category"
+            hidden
+        >
+            <ul class="causes_filter">
+                {
+                    filters.map(({ label, value }) => (
+                        <li class:list={[{ active: value === "all" }]}>
+                            <button
+                                type="button"
+                                data-artifact-filter={value}
+                                aria-pressed={
+                                    value === "all" ? "true" : "false"
+                                }
+                                aria-controls="artifact-list"
+                            >
+                                {label}
+                            </button>
+                        </li>
+                    ))
+                }
+            </ul>
+        </div>
+        <p
+            class="sr-only"
+            id="artifact-status"
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+        >
+            Showing all {artifacts.length} artifacts.
+        </p>
+        <div class="portfolio_list_inner artifacts-grid" id="artifact-list">
+            {
+                artifacts.map((artifact, index) => (
+                    <article
+                        class="portfolio_item"
+                        data-artifact-categories={artifact.categories.join(" ")}
+                        aria-labelledby={`artifact-${index}`}
+                    >
+                        <div class="artifact-icon" aria-hidden="true">
+                            <i class={artifact.icon} />
+                        </div>
+                        <div class="portfolio_title">
+                            <h2 id={`artifact-${index}`}>{artifact.title}</h2>
+                            <p class="artifact-kind">{artifact.kind}</p>
+                            <p class="artifact-description">
+                                {artifact.description}
+                            </p>
+                            <div class="artifact-links">
+                                <a
+                                    href={artifact.repository}
+                                    aria-label={`View ${artifact.title} on GitHub`}
+                                >
+                                    <i
+                                        class="fa-brands fa-github"
+                                        aria-hidden="true"
+                                    />{" "}
+                                    Repository
+                                </a>
+                                {artifact.reference && (
+                                    <a
+                                        href={artifact.reference.url}
+                                        aria-label={`Read the paper for ${artifact.title}`}
+                                    >
+                                        <i
+                                            class="fa-solid fa-file-lines"
+                                            aria-hidden="true"
+                                        />{" "}
+                                        {artifact.reference.label}
+                                    </a>
+                                )}
+                            </div>
+                        </div>
+                    </article>
+                ))
+            }
+        </div>
+        <p class="artifact-accounts">
+            Explore more on <a href="https://github.com/d1egoprog">d1egoprog</a>
+            and <a href="https://github.com/RYFoR">RYFoR</a>.
+        </p>
+    </section>
+</MainLayout>
+
+<style>
+    #artifacts {
+        padding-bottom: 40px;
+    }
+
+    .artifacts-intro {
+        text-align: center;
+        margin-bottom: 24px;
+    }
+
+    #artifacts .artifacts-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+        max-width: none;
+    }
+
+    #artifacts .portfolio_item {
+        margin-top: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .artifact-icon {
+        display: grid;
+        place-items: center;
+        min-height: 112px;
+        background: #dce6f1;
+        color: #36567e;
+        font-size: 64px;
+    }
+
+    #artifacts .portfolio_title {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        text-align: left;
+    }
+
+    #artifacts .portfolio_title h2 {
+        padding: 0 0 10px;
+        overflow-wrap: anywhere;
+        line-height: 1.4;
+    }
+
+    #artifacts .artifact-owner {
+        font-size: 12px;
+        font-weight: bold;
+        padding-bottom: 6px;
+    }
+
+    #artifacts .artifact-kind {
+        font-size: 12px;
+        padding-bottom: 12px;
+    }
+
+    #artifacts .artifact-description {
+        line-height: 1.6;
+        padding-bottom: 20px;
+    }
+
+    .artifact-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-top: auto;
+    }
+
+    .artifact-links a,
+    .artifact-accounts a {
+        color: #24486e;
+        text-decoration: underline;
+        font-weight: bold;
+    }
+
+    .artifact-links a:focus-visible,
+    .artifact-accounts a:focus-visible {
+        outline: 2px solid #333;
+        outline-offset: 3px;
+    }
+
+    #artifacts .portfolio_item:hover .portfolio_title {
+        background: #fff;
+    }
+
+    #artifacts .portfolio_item:hover .portfolio_title h2 {
+        color: #333;
+    }
+
+    #artifacts .portfolio_item:hover .portfolio_title p {
+        color: #666;
+    }
+
+    .artifact-accounts {
+        text-align: center;
+        margin-top: 32px;
+    }
+
+    #artifacts [hidden] {
+        display: none;
+    }
+
+    @media (max-width: 991px) {
+        #artifacts .artifacts-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+
+    @media (max-width: 575px) {
+        #artifacts .artifacts-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<script>
+    const section = document.querySelector<HTMLElement>("#artifacts");
+    if (section) {
+        const buttons = section.querySelectorAll<HTMLButtonElement>(
+            "[data-artifact-filter]",
+        );
+        const cards = section.querySelectorAll<HTMLElement>(
+            "[data-artifact-categories]",
+        );
+        const status = section.querySelector<HTMLElement>("#artifact-status");
+
+        buttons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const filter = button.dataset.artifactFilter;
+                let visibleCount = 0;
+                cards.forEach((card) => {
+                    const categories =
+                        card.dataset.artifactCategories?.split(" ") ?? [];
+                    card.hidden =
+                        filter !== "all" && !categories.includes(filter ?? "");
+                    if (!card.hidden) visibleCount++;
+                });
+                buttons.forEach((candidate) => {
+                    const active = candidate === button;
+                    candidate.closest("li")?.classList.toggle("active", active);
+                    candidate.setAttribute("aria-pressed", String(active));
+                });
+                if (status) {
+                    status.textContent =
+                        filter === "all"
+                            ? `Showing all ${visibleCount} artifacts.`
+                            : `Showing ${visibleCount} ${visibleCount === 1 ? "artifact" : "artifacts"} in ${button.textContent?.trim()}.`;
+                }
+            });
+        });
+        const controls = section.querySelector<HTMLElement>(".porfolio_menu");
+        if (controls) controls.hidden = false;
+    }
+</script>

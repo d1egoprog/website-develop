@@ -1,0 +1,88 @@
+---
+import { sitePath } from "../lib/urls";
+import MainLayout from "../layouts/MainLayout.astro";
+---
+<MainLayout
+    title=""
+    description="Diego Rincon-Yanez researches Knowledge Graphs and Neuro-Symbolic AI. Explore his publications, research projects, and academic experience."
+    pageType="ProfilePage"
+>
+
+<section class="container index_area" id="index">
+    <div class="container col-md-8">
+        <div class="index_item">
+            <p class="presentation">Welcome to my personal website. Currently I am dedicated to the exploration and research 
+                in Knowledge Graphs and Neuro-Symbolic AI. Here, you'll find my research, related projects 
+                and contact information.</p>
+            <p class="presentation">My current research is focused on Neuro-Simbolic AI solutions and architectures leveraging
+                foundational Semantic Web Technologies and Knowledge Graphs and Embeddings in a wide number of tasks like knowledge exploitation, 
+                semantic integration and knowledge base construction for different use cases using heterogeneous data
+                with a keen eye on the technological advancements in real and practical applications.</p>
+            <p class="presentation">Always open to collaboration opportunities with fellow researchers, industry professionals, and academic 
+                institutions interested in advancing on Knowledge Graphs, Neuro-Symbolic AI, 
+                and related research areas. If you share a passion for advancing technology and are interested 
+                in collaborative ventures, feel free to reach out.</p>
+        </div>             
+        <div class="index_item">
+            <h2>News, Updates and Notes</h2> 
+            <h3>Industry Sabbatical at Bosch Research</h3>
+            <p><strong>Date:</strong> May 2024</p>
+            <p>Learn more about my time at the Bosch Research Center in Renningen, Germany, where I worked  into the integration of 
+                symbolic AI and neural AI (Neuro-Symbolic AI) in Smart Manufacturing Scenarios, I had the opportunity to work with top researchers, 
+                participate in EU projects like <a href="https://datacloudproject.eu/" target="_blank">DataCloud</a>, and explore cutting-edge developments in AI. Check out the full note for more details on my experience</p>
+            <a href="https://www.bosch.com/stories/industry-sabbatical-at-bosch-research/" target="_blank">Click here to read the full note</a>
+        </div>                        
+        <div class="index_item">
+            <h2>Selected Research and Projects</h2>
+            <p>Wilma Schmidt, <strong>Diego Rincon-Yanez</strong>, Evgeny Kharlamov, and Adrian Paschke. 2024. 
+                Scaling Scientific Knowledge Discovery with Neuro-Symbolic AI and Large Language Models. Submited to 
+                First International Workshop on Scaling Knowledge Graphs for Industry co-located with 20th 
+                International Conference on Semantic Systems (SEMANTICS), 2024. CEUR-WS, TBD.
+                <i class="fa-solid fa-code"></i>[<a href={sitePath("bibtex/2024-SKGI.bib")}>BIB</a>],
+                <i class="fa-solid fa-link"></i>[<a href="https://ceur-ws.org/Vol-3759/workshop4.pdf">LINK</a>],
+                <i class="fa-brands fa-github"></i>[<a href="https://github.com/d1egoprog/KG-SLR4LLM" target="_blank">GIT</a>]</p>
+            <p><strong>Rincon-Yanez, D.</strong>, Mouakher, A., & Senatore, S. (2023). Enhancing downstream tasks in 
+                Knowledge Graphs Embeddings: A Complement Graph-based Approach Applied to Bilateral Trade. 
+                Procedia Computer Science, 225, 3692–3700. 10.1016/j.procs.2023.10.364,  
+                <i class="fa-solid fa-code"></i>[<a href={sitePath("bibtex/2023-KES.bib")}>BIB</a>],
+                <i class="fa-solid fa-link"></i>[<a href="https://doi.org/10.1016/j.procs.2023.10.364" target="_blank">DOI</a>],
+                <i class="fa-brands fa-github"></i>[<a href="https://github.com/d1egoprog/SyntheticTriples" target="_blank">GIT</a>]</p>
+            <p><strong>Rincon-Yanez, D.</strong>, Ounoughi, C., Sellami, B., Kalvet, T., Tiits, M., Senatore, S., & 
+                Yahia, S. ben. (2023). Accurate prediction of international trade flows: Leveraging 
+                knowledge graphs and their embeddings. Journal of King Saud University - Computer and 
+                Information Sciences, 35(10), 101789. 10.1016/j.jksuci.2023.101789,
+                <i class="fa-solid fa-code"></i>[<a href={sitePath("bibtex/2023-JKSUCI.bib")}>BIB</a>],
+                <i class="fa-solid fa-link"></i>[<a href="https://doi.org/10.1016/j.jksuci.2023.101789" target="_blank">DOI</a>].</p>
+            <p><strong>Rincon-Yanez, D.</strong>, & Senatore, S. (2022). FAIR Knowledge Graph construction from text, 
+                an approach applied to fictional novels. Proceedings of the 1st International Workshop 
+                on Knowledge Graph Generation From Text and the 1st International Workshop on Modular 
+                Knowledge Co-Located with 19th Extended Semantic Conference (ESWC 2022), 94–108. 
+                http://ceur-ws.org/Vol-3184/TEXT2KG_Paper_7.pdf. 
+                <i class="fa-solid fa-code"></i>[<a href={sitePath("bibtex/2022-ESWC.bib")}>BIB</a>],
+                <i class="fa-solid fa-link"></i>[<a href="http://ceur-ws.org/Vol-3184/TEXT2KG_Paper_7.pdf" target="_blank">URL</a>],
+                <i class="fa-brands fa-github"></i>[<a href="https://github.com/d1egoprog/Text2KG" target="_blank">GIT</a>]</p>
+        </div>
+    </div>
+    
+    <div class="col-md-4 container">
+        <div class="person_img">
+            <img src={sitePath("img/avatars/presenting.jpg")} alt="Diego, Rincon-Yanez">
+        </div>
+        <div class="index_side_item">
+            <p>Computer Science Researcher</p>
+            <p style="font-size: 15px;">
+            Currently focused in Knowledge Graphs and Neuro-Symbolic AI</p>
+        </div>
+        <div class="main_title">
+            <h2>Feed</h2>
+        </div>
+        <div class="tw-timeline">
+            <a class="twitter-timeline" data-lang="en" data-height="300" 
+            href="https://twitter.com/d1egoprog?ref_src=twsrc%5Etfw">Tweets by Diego Rincon-Yanez</a> 
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+    </div>
+
+</section>
+
+</MainLayout>

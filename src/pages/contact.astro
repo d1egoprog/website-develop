@@ -1,0 +1,170 @@
+---
+import { sitePath } from "../lib/urls";
+import MainLayout from "../layouts/MainLayout.astro";
+import Social from "../components/navigation/Social.astro";
+
+const portraitURL = sitePath("img/avatars/formal.webp");
+---
+
+<MainLayout
+    title="Contact"
+    description="Contact Diego Rincon-Yanez, a computer science researcher working on Knowledge Graphs and Neuro-Symbolic AI. Find his email and academic profiles."
+    pageType="ContactPage"
+>
+    <section
+        class="container about_person_area"
+        id="contact"
+        aria-labelledby="contact-title"
+    >
+        <div class="row">
+            <div class="col-md-5 contact-profile">
+                <div class="person_img">
+                    <img
+                        src={portraitURL}
+                        alt="Portrait of Diego Rincon-Yanez"
+                        width="640"
+                        height="640"
+                        decoding="async"
+                    />
+                </div>
+                <nav
+                    class="profile-links"
+                    aria-label="Academic and social profiles"
+                >
+                    <Social />
+                </nav>
+            </div>
+            <div class="col-md-7">
+                <div class="person_details">
+                    <h2>Hi, I'm <span>Diego Rincon-Yanez</span></h2>
+                    <p class="contact-role">
+                        Researcher &amp; Computer Scientist
+                    </p>
+                    <p>
+                        I am a computer science researcher and engineer
+                        combining academic expertise with hands-on industry
+                        experience. Over more than fifteen years, I have worked
+                        as a university professor, researcher, IT architect,
+                        CTO, and full-stack engineer for multiple organizations.
+                    </p>
+                    <p>
+                        I currently work as a researcher at the Institute for
+                        Data, Process and Knowledge Management at the Vienna
+                        University of Economics and Business (WU Vienna). My
+                        research focuses on Neuro-Symbolic AI, bridging symbolic
+                        representation and neural learning through Semantic Web
+                        frameworks, Knowledge Graphs, vector-based
+                        representations, and reproducible machine learning
+                        processes.
+                    </p>
+                    <p>
+                        I also have a soft spot for other areas of computer
+                        science, including distributed computing and
+                        high-performance computing.
+                    </p>
+                </div>
+                <div class="left_contact_details">
+                    <div class="media">
+                        <div class="media-left">
+                            <i
+                                class="fa-solid fa-location-pin"
+                                aria-hidden="true"></i>
+                        </div>
+                        <div class="media-body">
+                            <h2>Location</h2>
+                            <p>Austria</p>
+                        </div>
+                    </div>
+                    <div class="media">
+                        <div class="media-left">
+                            <i class="fa-solid fa-envelope" aria-hidden="true"
+                            ></i>
+                        </div>
+                        <div class="media-body">
+                            <h2>Email</h2>
+                            <p>diego-rincon at outlook.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</MainLayout>
+
+<style>
+    #contact {
+        padding-bottom: 40px;
+    }
+
+    #contact h1 {
+        margin: 0 0 30px;
+        font-size: 36px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .contact-profile {
+        text-align: center;
+    }
+
+    #contact .person_img {
+        display: block;
+        width: 100%;
+        max-width: 322px;
+        margin: 0 auto;
+    }
+
+    #contact .person_img img {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .profile-links {
+        margin-top: 24px;
+    }
+
+    #contact .person_details {
+        margin: 0;
+        padding-top: 0;
+    }
+
+    .person_details h2 {
+        margin-top: 0;
+        font-size: 32px;
+        font-weight: bold;
+        line-height: 1.25;
+        text-transform: uppercase;
+    }
+
+    .person_details h2 span {
+        color: #526f9b;
+    }
+
+    #contact .person_details p {
+        text-align: left;
+    }
+
+    #contact .contact-role {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .left_contact_details h2 {
+        margin: 0 0 3px;
+        font-size: 14px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    @media (max-width: 991px) {
+        .contact-profile {
+            margin-bottom: 32px;
+        }
+
+        .person_details h2 {
+            font-size: 28px;
+        }
+    }
+</style>
