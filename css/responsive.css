@@ -207,7 +207,7 @@
         left: 50%;
         transform: translateX(-50%);
     }
-    .portfolio_area .porfolio_menu .causes_filter li {
+    .porfolio_menu .causes_filter li {
         margin-right: 18px;
     }
 }
@@ -238,5 +238,16 @@
     }
     .footer_copyright .pull-left h5 {
         font-size: 10px;
+    }
+}
+@media (max-width: 575px) {
+    .porfolio_menu .causes_filter li {
+        margin-right: 14px;
+    }
+    .porfolio_menu .causes_filter li:last-child {
+        margin-right: 0;
+    }
+    .porfolio_menu .causes_filter button {
+        font-size: 14px;
     }
 }
