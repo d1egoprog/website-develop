@@ -1,4 +1,5 @@
 ---
+import { sitePath, canonicalPath } from "../lib/urls";
 import Navbar from "../components/navigation/Navbar.astro";
 import Footer from "../components/navigation/Footer.astro";
 
@@ -19,9 +20,9 @@ const {
 } = Astro.props;
 const pageTitle = title.trim() ? `${title.trim()} | ${SITE_TITLE}` : HOME_TITLE;
 // Use the production origin and the current pathname, without tracking queries or fragments.
-const canonicalURL = new URL(Astro.url.pathname, SITE_URL).href;
+const canonicalURL = new URL(canonicalPath(Astro.url.pathname), SITE_URL).href;
 const preventIndexing = noindex || import.meta.env.SITE_NOINDEX === "true";
-const faviconURL = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/img/fav-icon.png`;
+const faviconURL = sitePath("img/fav-icon.png");
 const socialImage = new URL("img/avatars/casual.jpg", SITE_URL).href;
 const socialImageAlt = `Portrait of ${PERSON_NAME}`;
 const websiteId = `${SITE_URL}#website`;
@@ -91,14 +92,14 @@ const structuredData = {
             set:html={JSON.stringify(structuredData).replace(/</g, "\\u003c")}
         />
 
-        <link href="/css/bootstrap.min.css" rel="stylesheet">
+        <link href={sitePath("css/bootstrap.min.css")} rel="stylesheet">
         
-        <link href="/css/style.css" rel="stylesheet">
-        <link href="/css/responsive.css" rel="stylesheet">
+        <link href={sitePath("css/style.css")} rel="stylesheet">
+        <link href={sitePath("css/responsive.css")} rel="stylesheet">
         
-        <link href="/assets/fontawesome/css/fontawesome.css" rel="stylesheet">
-        <link href="/assets/fontawesome/css/brands.css" rel="stylesheet">
-        <link href="/assets/fontawesome/css/solid.css" rel="stylesheet">
+        <link href={sitePath("assets/fontawesome/css/fontawesome.css")} rel="stylesheet">
+        <link href={sitePath("assets/fontawesome/css/brands.css")} rel="stylesheet">
+        <link href={sitePath("assets/fontawesome/css/solid.css")} rel="stylesheet">
 
     </head>
 
@@ -120,9 +121,9 @@ const structuredData = {
 <Footer />
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script is:inline src="/js/jquery-2.1.4.min.js"></script>
+<script is:inline src={sitePath("js/jquery-2.1.4.min.js")}></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script is:inline src="/js/bootstrap.min.js"></script>
+<script is:inline src={sitePath("js/bootstrap.min.js")}></script>
 
 </body>
 

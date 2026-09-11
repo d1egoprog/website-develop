@@ -5,10 +5,15 @@ import sitemap from '@astrojs/sitemap';
 import { defineConfig, fontProviders } from 'astro/config';
 import { SITE_URL } from './src/consts.ts';
 
+const deploymentBase = process.env.ASTRO_BASE_PATH || "/";
+
 // https://astro.build/config
 export default defineConfig({
 	site: SITE_URL,
-	integrations: [mdx(), sitemap()],
+	base: deploymentBase,
+	trailingSlash: "always",
+    // Development copies are noindex; publish sitemaps only for the root production build.
+    integrations: [mdx(), ...(deploymentBase === "/" ? [sitemap()] : [])],
 	fonts: [
 		{
 			provider: fontProviders.local(),

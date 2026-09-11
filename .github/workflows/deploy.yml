@@ -12,6 +12,7 @@ jobs:
     env:
       # This workflow publishes the GitHub development copy.
       SITE_NOINDEX: 'true'
+      ASTRO_BASE_PATH: '/website-develop/'
     permissions:
       contents: write   # needed to push to gh‑pages
 
@@ -24,7 +25,10 @@ jobs:
 
       # 2️⃣ Set up Node.js
       - name: Set up Node.js
-        uses: withastro/action@v6
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
 
         # 3️⃣ Install dependencies
       - name: Install dependencies
