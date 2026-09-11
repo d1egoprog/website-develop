@@ -12,6 +12,7 @@ export default defineConfig({
 	site: SITE_URL,
 	base: deploymentBase,
 	trailingSlash: "always",
+	redirects: { "/projects": `${deploymentBase.replace(/\/$/, "")}/artifacts/` },
     // Development copies are noindex; publish sitemaps only for the root production build.
     integrations: [mdx(), ...(deploymentBase === "/" ? [sitemap()] : [])],
 	fonts: [
