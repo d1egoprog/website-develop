@@ -101,6 +101,7 @@ body, p, h1, h2, h3, h4, h5, h6 {
   padding: 20px 0px;
 }
 
+.main_title h1,
 .main_title h2 {
   font-size: 25px;
   font-family: "Raleway", sans-serif;
@@ -1142,23 +1143,37 @@ body, p, h1, h2, h3, h4, h5, h6 {
   background: #efefef;
 }
 
-.portfolio_area .porfolio_menu {
+.porfolio_menu {
+  margin-bottom: 40px;
   text-align: center;
 }
 
-.portfolio_area .porfolio_menu .causes_filter {
+.porfolio_menu .causes_filter {
   text-align: center;
   border-bottom: 5px solid #fff;
   display: inline-block;
   border-radius: 2.5px;
 }
 
-.portfolio_area .porfolio_menu .causes_filter li {
+.porfolio_menu .causes_filter li {
   display: inline-block;
   margin-right: 45px;
 }
 
-.portfolio_area .porfolio_menu .causes_filter li a {
+/* Shared category chooser for projects, research, and supervising. */
+.porfolio_menu .causes_filter button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.porfolio_menu .causes_filter button:focus-visible {
+  outline: 2px solid #333;
+  outline-offset: 3px;
+}
+
+.porfolio_menu .causes_filter li :is(a, button) {
   font-size: 18px;
   color: #222222;
   font-family: "Raleway", sans-serif;
@@ -1169,7 +1184,7 @@ body, p, h1, h2, h3, h4, h5, h6 {
   display: inline-block;
 }
 
-.portfolio_area .porfolio_menu .causes_filter li a:before {
+.porfolio_menu .causes_filter li :is(a, button):before {
   content: "";
   height: 5px;
   background: #7d9fd3;
@@ -1183,22 +1198,22 @@ body, p, h1, h2, h3, h4, h5, h6 {
   transition: all 400ms linear 0s;
 }
 
-.portfolio_area .porfolio_menu .causes_filter li:hover a:before, .portfolio_area .porfolio_menu .causes_filter li.active a:before {
+.porfolio_menu .causes_filter li:hover :is(a, button):before, .porfolio_menu .causes_filter li.active :is(a, button):before {
   -webkit-transform: scale(1);
   -ms-transform: scale(1);
   transform: scale(1);
 }
 
-.portfolio_area .porfolio_menu .causes_filter li:first-child a:before {
+.porfolio_menu .causes_filter li:first-child :is(a, button):before {
   border-bottom-left-radius: 2.5px;
   border-top-left-radius: 2.5px;
 }
 
-.portfolio_area .porfolio_menu .causes_filter li:last-child {
+.porfolio_menu .causes_filter li:last-child {
   margin-right: 0px;
 }
 
-.portfolio_area .porfolio_menu .causes_filter li:last-child a:before {
+.porfolio_menu .causes_filter li:last-child :is(a, button):before {
   border-bottom-right-radius: 2.5px;
   border-top-right-radius: 2.5px;
 }
@@ -1244,6 +1259,7 @@ body, p, h1, h2, h3, h4, h5, h6 {
   transition: all 400ms linear 0s;
 }
 
+.portfolio_area .portfolio_list_inner .portfolio_item .portfolio_title h2,
 .portfolio_area .portfolio_list_inner .portfolio_item .portfolio_title h4 {
   font-size: 16px;
   font-family: "Raleway", sans-serif;
@@ -1253,6 +1269,7 @@ body, p, h1, h2, h3, h4, h5, h6 {
   padding: 18px 0px 10px 0px;
 }
 
+.portfolio_area .portfolio_list_inner .portfolio_item .portfolio_title p,
 .portfolio_area .portfolio_list_inner .portfolio_item .portfolio_title h5 {
   font-size: 14px;
   font-family: "Raleway", sans-serif;
@@ -1270,10 +1287,12 @@ body, p, h1, h2, h3, h4, h5, h6 {
   background: #7d9fd3;
 }
 
+.portfolio_area .portfolio_list_inner .portfolio_item:hover .portfolio_title h2,
 .portfolio_area .portfolio_list_inner .portfolio_item:hover .portfolio_title h4 {
   color: #fff;
 }
 
+.portfolio_area .portfolio_list_inner .portfolio_item:hover .portfolio_title p,
 .portfolio_area .portfolio_list_inner .portfolio_item:hover .portfolio_title h5 {
   color: #fff;
 }

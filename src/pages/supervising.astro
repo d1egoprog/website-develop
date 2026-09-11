@@ -18,22 +18,29 @@ const getStudentFilterGroup = (university: string) => {
 
 ---
 
-<MainLayout title="Supervising">
+<MainLayout
+    title="Supervising"
+    description="Graduate and undergraduate students supervised by Diego Rincon-Yanez, with their research topics and university affiliations."
+    pageType="CollectionPage"
+>
   <div class="main_container">
     <div class="content_inner_bg">
-      <section class="container supervising_area" id="projects">
+      <section class="container supervising_area" id="supervising">
         <div class="main_title">
           <h2>Supervised Students</h2>
         </div>
         
         
-        <div class="filters" aria-label="Student filters">
-          {supervisingFilters.map((filter) => (
-            <button type="button" class="filter_btn"
-              data-filter={filter.value}>
-              {filter.label}
-            </button>
-          ))}
+        <div class="porfolio_menu" role="group" aria-label="Student filters">
+          <ul class="causes_filter">
+            {supervisingFilters.map((filter) => (
+              <li>
+                <button type="button" data-filter={filter.value} aria-pressed="false">
+                  {filter.label}
+                </button>
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div class="col-md-12">
@@ -120,7 +127,7 @@ const getStudentFilterGroup = (university: string) => {
   </style>
 
   <script is:inline>
-    const supervisingButtons = document.querySelectorAll('.filter_btn[data-filter]');
+    const supervisingButtons = document.querySelectorAll('#supervising .causes_filter button[data-filter]');
     const supervisingRows = document.querySelectorAll('.supervising-row');
     const supervisingFilterState = new Set();
 
@@ -143,9 +150,11 @@ const getStudentFilterGroup = (university: string) => {
 
         if (supervisingFilterState.has(filter)) {
           supervisingFilterState.delete(filter);
-          button.classList.remove('is-active');
+          button.closest('li').classList.remove('active');
+          button.setAttribute('aria-pressed', 'false');
         } else {
-          button.classList.add('is-active');
+          button.closest('li').classList.add('active');
+          button.setAttribute('aria-pressed', 'true');
           supervisingFilterState.add(filter);
         }
 

@@ -9,6 +9,9 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    env:
+      # This workflow publishes the GitHub development copy.
+      SITE_NOINDEX: 'true'
     permissions:
       contents: write   # needed to push to gh‑pages
 

@@ -48,16 +48,22 @@ function formatBibtex(publication: (typeof publications)[number]) {
 }
 ---
 
-<MainLayout title="Research">
+<MainLayout
+    title="Research"
+    description="Publications by Diego Rincon-Yanez, including journal articles, conference papers, and work on Knowledge Graphs and Neuro-Symbolic AI."
+    pageType="CollectionPage"
+>
   <section class="container research_area" id="research">
     <div class="main_title">
       <h2>Publications</h2>
     </div>
     
-    <div class="filters" aria-label="Publication filters">
-      <button type="button" class="filter_btn" data-filter="journal">Journal</button>
-      <button type="button" class="filter_btn" data-filter="conference">Conference</button>
-      <button type="button" class="filter_btn" data-filter="book">Book / Chapters</button>
+    <div class="porfolio_menu" role="group" aria-label="Publication filters">
+      <ul class="causes_filter">
+        <li><button type="button" data-filter="journal" aria-pressed="false">Journal</button></li>
+        <li><button type="button" data-filter="conference" aria-pressed="false">Conference</button></li>
+        <li><button type="button" data-filter="book" aria-pressed="false">Book / Chapters</button></li>
+      </ul>
     </div>
 
     {years.map((year) => (
@@ -274,7 +280,7 @@ function formatBibtex(publication: (typeof publications)[number]) {
   </style>
 
   <script is:inline>
-    const filterButtons = document.querySelectorAll('.filter_btn');
+    const filterButtons = document.querySelectorAll('#research .causes_filter button[data-filter]');
     const publicationCards = document.querySelectorAll('.publication-card');
     const filterState = new Set();
 
@@ -304,10 +310,12 @@ function formatBibtex(publication: (typeof publications)[number]) {
         
         if (filterState.has(filter)) {
           filterState.delete(filter);
-          button.classList.remove('is-active');
+          button.closest('li').classList.remove('active');
+          button.setAttribute('aria-pressed', 'false');
         } else {
           filterState.add(filter);
-          button.classList.add('is-active');
+          button.closest('li').classList.add('active');
+          button.setAttribute('aria-pressed', 'true');
         }
 
         updatePublicationFilters();
